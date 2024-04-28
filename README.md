@@ -1,6 +1,6 @@
 # RunIfExists
 
-Run a file or script if exists
+Run a file or script if exists. See current Freeware version of RunIfExists at [dseichter.de](https://www.dseichter.de/run-if-exists/).
 
 ## Badges
 
