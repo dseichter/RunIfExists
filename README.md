@@ -7,6 +7,10 @@ Run a file or script if exists. See current Freeware version of RunIfExists at [
 ![pep8](https://github.com/dseichter/RunIfExists/actions/workflows/pep8.yml/badge.svg)
 ![trivy](https://github.com/dseichter/RunIfExists/actions/workflows/trivy.yml/badge.svg)
 
+## First draft of new window
+
+![Main Window](images/mainwindow.png)
+
 ## Start development
 
 Create and activate an environment by running the following command:
