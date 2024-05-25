@@ -28,11 +28,9 @@ class RunIfExistsFrame(gui.frameMain):
     def onShow(self, event):
         # add the version to the label
         self.SetTitle(helper.NAME + ' ' + helper.VERSION)
-        
+
         self.Layout()
         self.Fit()
-        
-        
 
     def createStartfile(self, event):
         event.Skip()
@@ -62,7 +60,8 @@ class RunIfExistsFrame(gui.frameMain):
         dlg = about_ui.dialogAbout(self)
         dlg.ShowModal()
         dlg.Destroy()
-        
+
+
 # mandatory in wx, create an app, False stands for not deteriction stdin/stdout
 # refer manual for details
 app = wx.App(False)
@@ -75,4 +74,3 @@ frame.Show(True)
 
 # start the applications
 app.MainLoop()
-        
