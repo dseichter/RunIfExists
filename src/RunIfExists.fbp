@@ -396,7 +396,7 @@
                   <property name="minimize_button">0</property>
                   <property name="minimum_size"></property>
                   <property name="moveable">1</property>
-                  <property name="name">m_filePicker1</property>
+                  <property name="name">filepickerRun</property>
                   <property name="pane_border">1</property>
                   <property name="pane_position"></property>
                   <property name="pane_size"></property>
@@ -596,7 +596,7 @@
                   <property name="minimize_button">0</property>
                   <property name="minimum_size"></property>
                   <property name="moveable">1</property>
-                  <property name="name">m_filePicker2</property>
+                  <property name="name">filepickerStartfile</property>
                   <property name="pane_border">1</property>
                   <property name="pane_position"></property>
                   <property name="pane_size"></property>

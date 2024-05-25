@@ -69,8 +69,8 @@ class frameMain(wx.Frame):
         self.m_staticText2.Wrap(-1)
 
         fgSizer1.Add(self.m_staticText2, 0, wx.ALL, 5)
-        self.m_filePicker1 = wx.FilePickerCtrl(self.m_panel1, wx.ID_ANY, wx.EmptyString, u"Select a file", u"*.*", wx.DefaultPosition, wx.DefaultSize, wx.FLP_DEFAULT_STYLE)
-        fgSizer1.Add(self.m_filePicker1, 1, wx.ALL | wx.EXPAND, 5)
+        self.filepickerRun = wx.FilePickerCtrl(self.m_panel1, wx.ID_ANY, wx.EmptyString, u"Select a file", u"*.*", wx.DefaultPosition, wx.DefaultSize, wx.FLP_DEFAULT_STYLE)
+        fgSizer1.Add(self.filepickerRun, 1, wx.ALL | wx.EXPAND, 5)
 
         fgSizer1.Add((0, 0), 1, wx.EXPAND, 5)
         self.m_staticText3 = wx.StaticText(self.m_panel1, wx.ID_ANY, u"...if the following file exists.", wx.DefaultPosition, wx.DefaultSize, 0)
@@ -83,8 +83,8 @@ class frameMain(wx.Frame):
         self.m_staticText4.Wrap(-1)
 
         fgSizer1.Add(self.m_staticText4, 0, wx.ALL, 5)
-        self.m_filePicker2 = wx.FilePickerCtrl(self.m_panel1, wx.ID_ANY, wx.EmptyString, u"Select a file", u"*.*", wx.DefaultPosition, wx.DefaultSize, wx.FLP_DEFAULT_STYLE)
-        fgSizer1.Add(self.m_filePicker2, 1, wx.ALL | wx.EXPAND, 5)
+        self.filepickerStartfile = wx.FilePickerCtrl(self.m_panel1, wx.ID_ANY, wx.EmptyString, u"Select a file", u"*.*", wx.DefaultPosition, wx.DefaultSize, wx.FLP_DEFAULT_STYLE)
+        fgSizer1.Add(self.filepickerStartfile, 1, wx.ALL | wx.EXPAND, 5)
 
         fgSizer1.Add((0, 0), 1, wx.EXPAND, 5)
         fgSizer2 = wx.FlexGridSizer(0, 3, 0, 0)

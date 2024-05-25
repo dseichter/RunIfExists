@@ -6,10 +6,31 @@ import gui
 import webbrowser
 import subprocess
 import os
+import sys
+import time
+import threading
 # import workdir specific libraries
 import about_ui
 import helper
 import icons
+
+
+class WatcherThread(threading.Thread):
+    def __init__(self, parent, startfile, runfile):
+        threading.Thread.__init__(self)
+        self._parent = parent
+        self._startfile = startfile
+        self._runfile = runfile
+
+    def run(self):
+        # global variable to check if the program is active
+        active = True
+        while not os.path.exists(self._startfile) and active is True:
+            time.sleep(1)
+
+        active = False
+        env = os.environ.copy()
+        subprocess.Popen(self._runfile, env=env)
 
 
 class RunIfExistsFrame(gui.frameMain):
@@ -33,13 +54,35 @@ class RunIfExistsFrame(gui.frameMain):
         self.Fit()
 
     def createStartfile(self, event):
-        event.Skip()
+        if self.filepickerStartfile.GetPath() != '':
+            if os.path.exists(self.filepickerStartfile.GetPath()):
+                wx.MessageBox('File already exists.', 'File exists', wx.OK | wx.ICON_INFORMATION)
+            else:
+                with open(self.filepickerStartfile.GetPath(), 'w') as f:
+                    f.write('')
+                wx.MessageBox('File created.', 'File created', wx.OK | wx.ICON_INFORMATION)
 
     def activate(self, event):
-        event.Skip()
+        worker = WatcherThread(self, self.filepickerStartfile.GetPath(), self.filepickerRun.GetPath())
+        worker.start()
+        wx.MessageBox('Watcher started.', 'Watcher started', wx.OK | wx.ICON_INFORMATION)
 
     def createDesktopLink(self, event):
-        event.Skip()
+        # create a batch file to start the program
+        if os.name == 'nt':
+            # Windows
+            desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
+            shellscript = os.path.join(desktop, 'RunIfExists.bat')
+            with open(shellscript, 'w') as f:
+                f.write(sys.executable + ' "' + self.filepickerRun.GetPath() + '" "' + self.filepickerStartfile.GetPath() + '"' + '\n')
+        else:
+            # Linux
+            desktop = os.path.join(os.path.join(os.path.expanduser('~')), 'Desktop')
+            shellscript = os.path.join(desktop, 'RunIfExists.sh')
+            with open(shellscript, 'w') as f:
+                f.write('#!/bin/bash\n')
+                f.write(sys.executable + ' "' + self.filepickerRun.GetPath() + '" "' + self.filepickerStartfile.GetPath() + '"' + '\n')
+        wx.MessageBox('Desktop file created.', 'Desktop link', wx.OK | wx.ICON_INFORMATION)
 
     def miFileClose(self, event):
         self.Close()
