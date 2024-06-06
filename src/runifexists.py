@@ -100,7 +100,7 @@ class RunIfExistsFrame(gui.frameMain):
 
     def miHelpAbout(self, event):
         # open the about dialog
-        dlg = about_ui.dialogAbout(self)
+        dlg = about_ui.DialogAbout(self)
         dlg.ShowModal()
         dlg.Destroy()
 
