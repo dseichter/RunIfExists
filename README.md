@@ -1,15 +1,49 @@
 # RunIfExists
 
-Run a file or script if exists. See current Freeware version of RunIfExists at [dseichter.de](https://www.dseichter.de/run-if-exists/).
+Run a file or script if a specified file exists. Build complex workflows with Run If Exists.
 
 ## Badges
 
 ![pep8](https://github.com/dseichter/RunIfExists/actions/workflows/pep8.yml/badge.svg)
 ![trivy](https://github.com/dseichter/RunIfExists/actions/workflows/trivy.yml/badge.svg)
 
-## First draft of new window
+## About
 
-![Main Window](images/mainwindow.png)
+![Run If Exists](/images/runifexists.png "Run If Exists")
+
+After almost 6 years, I have revised my tool **Run If Exists** and offer exactly the same function as last in 2016. Start applications as soon as a defined file exists. Define several different configurations and launch them in parallel so you can run multiple applications at once.
+
+## Installation and configuration
+
+The installation of Run If Exists is, like on my others tools, very simple. Download the executable file and define the program or script you want to run and the startup file that will make the defined program run. Activate the startup using the Activate button. For testing, you can have an empty start file created (via the Create Startfile button) or create a shortcut directly on your desktop.
+
+Use the menu to access our website or check directly if an update is available.
+
+Please make sure that a possibly existing file is overwritten when creating the start file (button “Create Startfile”). Therefore, check the correct spelling of your start file beforehand.
+
+The start file is automatically deleted after execution. Therefore, do not necessarily use the startup file as a data source for your scripts, as this may make debugging more difficult.
+
+If you have a new requirement that you would like me to add to Run If Exists, please do not hesitate to let me know. I will be very happy to extend the features so that the tool can be of even greater help to you.
+
+## Workflows
+
+You can also define more extensive workflows with Run If Exists. This depends on the applications or scripts you use.
+
+You can also configure the processing of parallel tasks. Here it is important that a start file is read by several configurations at the same time. The only thing you have to pay attention to here is that you can actually execute the program or script to be started at the same time.
+
+Since my program treats each process separately and does not perform any plausibility check to the other configurations, I cannot prevent the following:
+
+* Endless loops
+* High resource utilization
+* Data loss
+
+Therefore please check this carefully. Since version 1.1 I have implemented a check for the manual generation of the start file.
+
+Run If Exists was created in the style of [IFTTT](https://en.wikipedia.org/wiki/IFTTT "IFTTT") (if this, than that) or its alternatives. However, with the goal of limiting itself to local scripts.
+
+# Contributing
+
+If you want to contribute by fixing an issue, add a new function or just optimize something, a simple instruction how to start development.
 
 ## Start development
 
