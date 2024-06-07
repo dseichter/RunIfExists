@@ -37,7 +37,7 @@ Since my program treats each process separately and does not perform any plausib
 * High resource utilization
 * Data loss
 
-Therefore please check this carefully. Since version 1.1 I have implemented a check for the manual generation of the start file.
+Therefore please check this carefully.
 
 Run If Exists was created in the style of [IFTTT](https://en.wikipedia.org/wiki/IFTTT "IFTTT") (if this, than that) or its alternatives. However, with the goal of limiting itself to local scripts.
 
