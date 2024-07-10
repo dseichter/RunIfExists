@@ -2,7 +2,7 @@ import urllib3
 import json
 import logging
 
-VERSION = "v2024-05-26"
+VERSION = "v2024-07-07"
 UPDATEURL = 'https://api.github.com/repos/dseichter/RunIfExists/releases/latest'
 RELEASES = 'https://github.com/dseichter/RunIfExists/releases'
 NAME = 'RunIfExists'
