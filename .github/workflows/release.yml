@@ -31,7 +31,7 @@ jobs:
             run: pyinstaller --onefile -w src/runifexists.py -n runifexists-windows-${{ github.ref_name }}.exe --icon=icons/Track_and_Field.ico
 
           - name: Upload artifact
-            uses: actions/upload-artifact@v4
+            uses: actions/upload-artifact@v5
             with:
                   name: runifexists-windows-${{ github.ref_name }}.exe
                   path: dist/runifexists-windows-${{ github.ref_name }}.exe   
@@ -63,7 +63,7 @@ jobs:
             run: pyinstaller --onefile src/runifexists.py -n runifexists-linux-${{ github.ref_name }} --icon=icons/Track_and_Field.ico
 
           - name: Upload artifact
-            uses: actions/upload-artifact@v4
+            uses: actions/upload-artifact@v5
             with:
               name: runifexists-linux-${{ github.ref_name }}
               path: dist/runifexists-linux-${{ github.ref_name }}
