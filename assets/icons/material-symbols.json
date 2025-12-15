@@ -1,0 +1,29 @@
+{
+  "icons": {
+    "close": {
+      "material_name": "close",
+      "description": "Close/Cancel actions",
+      "fallback": "SP_DialogCloseButton"
+    },
+    "help": {
+      "material_name": "help",
+      "description": "Help and support",
+      "fallback": "SP_DialogHelpButton"
+    },
+    "refresh": {
+      "material_name": "refresh",
+      "description": "Update/Refresh actions", 
+      "fallback": "SP_BrowserReload"
+    },
+    "info": {
+      "material_name": "info",
+      "description": "Information dialogs",
+      "fallback": "SP_MessageBoxInformation"
+    },
+    "sports": {
+      "material_name": "sports",
+      "description": "Main application icon",
+      "fallback": "SP_ComputerIcon"
+    }
+  }
+}

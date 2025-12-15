@@ -31,13 +31,10 @@ class DialogAbout(gui.dialogAbout):
         self.staticTextName.SetLabelText(helper.NAME + ' ' + helper.VERSION)
         self.staticTextLicence.SetLabelText(self.staticTextLicence.GetLabelText() + ' ' + helper.LICENCE)
 
-        # specify all the icons
-        gui.dialogAbout.SetIcon(self, icons.info.GetIcon())
-        self.bitmapLogo.SetBitmap(icons.track_and_field.GetBitmap())
+        self.setWindowIcon(icons.get_icon('directions_run_48dp_8B1A10_FILL0_wght400_GRAD0_opsz48'))
+        pixmap = icons.get_icon('directions_run_48dp_8B1A10_FILL0_wght400_GRAD0_opsz48').pixmap(48, 48)
+        self.logo_label.setPixmap(pixmap)
         self.Fit()
 
     def openGithub(self, event):
         webbrowser.open_new_tab('https://github.com/dseichter/RunIfExists')  # Add the URL of the GitHub repository
-
-    def openIcons8(self, event):
-        webbrowser.open_new_tab('https://icons8.com/')

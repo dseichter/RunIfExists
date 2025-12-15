@@ -58,4 +58,11 @@ Install the required dependencies
 
 ```pip install -r src/requirements.txt```
 
-If you want to do some UI changes, download and install the latest wxFormBuilder from the [wxFormBuilder Homepage](https://github.com/wxFormBuilder/wxFormBuilder).
+The application has been migrated from wxPython to PySide6. The original wxPython files are preserved for reference:
+- `runifexists.py` (original wxPython version)
+- `runifexists_pyside.py` (new PySide6 version)
+- `gui.py` (original wxPython GUI)
+- `gui_pyside.py` (new PySide6 GUI)
+
+To run the PySide6 version:
+```python test_pyside.py```
