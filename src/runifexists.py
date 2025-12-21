@@ -9,7 +9,7 @@ import webbrowser
 import signal
 from PySide6.QtWidgets import QApplication, QMessageBox, QFileDialog
 
-from gui import MainWindow, AboutDialog
+from gui import MainWindow
 from about_ui import DialogAbout
 import helper
 
