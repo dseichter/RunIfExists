@@ -18,7 +18,7 @@ import json
 import logging
 from packaging import version
 
-VERSION = "v2024-07-07"
+VERSION = "v2025-12-21"
 UPDATEURL = 'https://api.github.com/repos/dseichter/RunIfExists/releases/latest'
 RELEASES = 'https://github.com/dseichter/RunIfExists/releases'
 NAME = 'RunIfExists'
