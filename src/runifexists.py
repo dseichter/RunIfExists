@@ -6,9 +6,11 @@ import time
 import threading
 import subprocess
 import webbrowser
+import signal
 from PySide6.QtWidgets import QApplication, QMessageBox
 
 from gui import MainWindow, AboutDialog
+from about_ui import DialogAbout
 import helper
 
 class WatcherThread(threading.Thread):
@@ -28,7 +30,7 @@ class WatcherThread(threading.Thread):
         
         try:
             os.remove(self._startfile)
-        except:
+        except OSError:
             pass
 
 class RunIfExistsApp(MainWindow):
@@ -78,14 +80,14 @@ class RunIfExistsApp(MainWindow):
             QMessageBox.information(self, "No update", "No new release available.")
 
     def show_about(self):
-        dlg = AboutDialog(self)
-        dlg.name_label.setText(f"{helper.NAME} {helper.VERSION}")
-        dlg.license_label.setText(f"Licensed under {helper.LICENCE}")
+        dlg = DialogAbout(self)
         dlg.exec()
 
 def main():
     app = QApplication(sys.argv)
     app.setApplicationName("RunIfExists")
+    
+    signal.signal(signal.SIGINT, signal.SIG_DFL)
     
     window = RunIfExistsApp()
     window.show()

@@ -1,7 +1,6 @@
 from PySide6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
                                QGridLayout, QLabel, QPushButton, QFileDialog, 
                                QMessageBox, QDialog, QDialogButtonBox)
-from PySide6.QtCore import Qt
 from PySide6.QtGui import QAction
 import os
 import icons

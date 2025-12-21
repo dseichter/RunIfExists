@@ -2,7 +2,8 @@
 
 Run a file or script if a specified file exists. Build complex workflows with Run If Exists.
 
-![pep8](https://github.com/dseichter/RunIfExists/actions/workflows/pep8.yml/badge.svg)
+[![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/dseichter/RunIfExists/total)](https://github.com/dseichter/RunIfExists/releases)
+![ruff](https://github.com/dseichter/RunIfExists/actions/workflows/ruff.yml/badge.svg)
 ![trivy](https://github.com/dseichter/RunIfExists/actions/workflows/trivy.yml/badge.svg)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dseichter_RunIfExists&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=dseichter_RunIfExists)
 
@@ -58,11 +59,16 @@ Install the required dependencies
 
 ```pip install -r src/requirements.txt```
 
-The application has been migrated from wxPython to PySide6. The original wxPython files are preserved for reference:
-- `runifexists.py` (original wxPython version)
-- `runifexists_pyside.py` (new PySide6 version)
-- `gui.py` (original wxPython GUI)
-- `gui_pyside.py` (new PySide6 GUI)
+To run the application:
 
-To run the PySide6 version:
-```python test_pyside.py```
+```python src/runifexists.py```
+
+
+## 📄 License
+
+GPL 3.0 — see [LICENSE](LICENSE) file at the root of the repository for details.
+
+## Icons
+ 
+GitHubIssueClient uses [Google Material Symbols](https://fonts.google.com/icons) within its code for UI icons.  
+Material Symbols are licensed under the [Apache License 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE) and are free for use in open source projects.
