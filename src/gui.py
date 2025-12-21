@@ -1,7 +1,8 @@
 from PySide6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
                                QGridLayout, QLabel, QPushButton, QFileDialog, 
-                               QMessageBox, QDialog, QDialogButtonBox)
-from PySide6.QtGui import QAction
+                               QMessageBox, QDialog, QDialogButtonBox, QLineEdit)
+from PySide6.QtGui import QAction, QPalette
+from PySide6.QtCore import Qt
 import os
 import icons
 
@@ -9,7 +10,6 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("RunIfExists")
-        self.setFixedSize(738, 210)
         self.setWindowIcon(icons.get_icon('directions_run_48dp_8B1A10_FILL0_wght400_GRAD0_opsz48'))
         
         self.init_ui()
@@ -34,10 +34,18 @@ class MainWindow(QMainWindow):
         grid_layout.addWidget(header_label, 0, 1)
         
         run_label = QLabel("Run:")
-        self.run_file_button = QPushButton("Select a file")
-        self.run_file_button.clicked.connect(self.select_run_file)
+        run_layout = QHBoxLayout()
+        self.run_file_edit = QLineEdit()
+        self.run_file_edit.setPlaceholderText("Enter or paste file path...")
+        self.run_file_edit.textChanged.connect(self.on_run_file_changed)
+        self.run_file_browse_btn = QPushButton("Browse")
+        self.run_file_browse_btn.clicked.connect(self.select_run_file)
+        run_layout.addWidget(self.run_file_edit)
+        run_layout.addWidget(self.run_file_browse_btn)
+        run_widget = QWidget()
+        run_widget.setLayout(run_layout)
         grid_layout.addWidget(run_label, 1, 0)
-        grid_layout.addWidget(self.run_file_button, 1, 1)
+        grid_layout.addWidget(run_widget, 1, 1)
         
         header_label2 = QLabel("...if the following file exists.")
         header_label2.setStyleSheet("font-weight: bold;")
@@ -45,10 +53,18 @@ class MainWindow(QMainWindow):
         grid_layout.addWidget(header_label2, 2, 1)
         
         start_label = QLabel("Startfile:")
-        self.start_file_button = QPushButton("Select a file")
-        self.start_file_button.clicked.connect(self.select_start_file)
+        start_layout = QHBoxLayout()
+        self.start_file_edit = QLineEdit()
+        self.start_file_edit.setPlaceholderText("Enter or paste file path...")
+        self.start_file_edit.textChanged.connect(self.on_start_file_changed)
+        self.start_file_browse_btn = QPushButton("Browse")
+        self.start_file_browse_btn.clicked.connect(self.select_start_file)
+        start_layout.addWidget(self.start_file_edit)
+        start_layout.addWidget(self.start_file_browse_btn)
+        start_widget = QWidget()
+        start_widget.setLayout(start_layout)
         grid_layout.addWidget(start_label, 3, 0)
-        grid_layout.addWidget(self.start_file_button, 3, 1)
+        grid_layout.addWidget(start_widget, 3, 1)
         
         button_layout = QHBoxLayout()
         self.create_startfile_btn = QPushButton("Create Startfile")
@@ -96,13 +112,19 @@ class MainWindow(QMainWindow):
         file_path, _ = QFileDialog.getOpenFileName(self, "Select a file", "", "All Files (*.*)")
         if file_path:
             self.run_file_path = file_path
-            self.run_file_button.setText(os.path.basename(file_path))
+            self.run_file_edit.setText(file_path)
             
     def select_start_file(self):
         file_path, _ = QFileDialog.getOpenFileName(self, "Select a file", "", "All Files (*.*)")
         if file_path:
             self.start_file_path = file_path
-            self.start_file_button.setText(os.path.basename(file_path))
+            self.start_file_edit.setText(file_path)
+    
+    def on_run_file_changed(self, text):
+        self.run_file_path = text.strip()
+    
+    def on_start_file_changed(self, text):
+        self.start_file_path = text.strip()
     
     def create_startfile(self):
         if not self.start_file_path:

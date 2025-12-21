@@ -7,7 +7,7 @@ import threading
 import subprocess
 import webbrowser
 import signal
-from PySide6.QtWidgets import QApplication, QMessageBox
+from PySide6.QtWidgets import QApplication, QMessageBox, QFileDialog
 
 from gui import MainWindow, AboutDialog
 from about_ui import DialogAbout
@@ -52,19 +52,36 @@ class RunIfExistsApp(MainWindow):
             QMessageBox.warning(self, "Warning", "Please select both run file and start file.")
             return
             
-        if os.name == 'nt':
-            desktop = os.path.join(os.environ['USERPROFILE'], 'Desktop')
-            shellscript = os.path.join(desktop, 'RunIfExists.bat')
-            with open(shellscript, 'w') as f:
-                f.write(f'{sys.executable} "{self.run_file_path}" "{self.start_file_path}"\n')
-        else:
-            desktop = os.path.join(os.path.expanduser('~'), 'Desktop')
-            shellscript = os.path.join(desktop, 'RunIfExists.sh')
-            with open(shellscript, 'w') as f:
-                f.write('#!/bin/bash\n')
-                f.write(f'{sys.executable} "{self.run_file_path}" "{self.start_file_path}"\n')
-        
-        QMessageBox.information(self, "Desktop link", "Desktop file created.")
+        try:
+            if os.name == 'nt':
+                filename = "RunIfExists.bat"
+                filter_str = "Batch files (*.bat)"
+            else:
+                filename = "RunIfExists.sh"
+                filter_str = "Shell scripts (*.sh)"
+            
+            file_path, _ = QFileDialog.getSaveFileName(
+                self, "Save desktop link", 
+                os.path.join(os.path.expanduser('~'), filename),
+                filter_str
+            )
+            
+            if not file_path:
+                return
+            
+            with open(file_path, 'w') as f:
+                if os.name == 'nt':
+                    f.write(f'{sys.executable} "{self.run_file_path}" "{self.start_file_path}"\n')
+                else:
+                    f.write('#!/bin/bash\n')
+                    f.write(f'{sys.executable} "{self.run_file_path}" "{self.start_file_path}"\n')
+                    
+            if os.name != 'nt':
+                os.chmod(file_path, 0o755)
+            
+            QMessageBox.information(self, "Desktop link", f"Script created: {file_path}")
+        except (OSError, PermissionError) as e:
+            QMessageBox.critical(self, "Error", f"Failed to create script: {str(e)}")
 
     def show_support(self):
         webbrowser.open_new_tab('https://github.com/dseichter/RunIfExists')
