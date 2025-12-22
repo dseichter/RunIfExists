@@ -1,208 +1,181 @@
-# -*- coding: utf-8 -*-
+from PySide6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
+                               QGridLayout, QLabel, QPushButton, QFileDialog, 
+                               QMessageBox, QDialog, QDialogButtonBox, QLineEdit)
+from PySide6.QtGui import QAction
+import os
+import icons
 
-# #########################################################################
-# # Python code generated with wxFormBuilder (version 4.1.0-69d57cd9)
-# # http://www.wxformbuilder.org/
-# #
-# # PLEASE DO *NOT* EDIT THIS FILE!
-# #########################################################################
-
-import wx
-import wx.xrc
-
-ID_CLOSE = 1000
-ID_GET_HELP = 1001
-ID_CHECK_FOR_UPDATES = 1002
-ID_ABOUT = 1003
-
-
-# #########################################################################
-# # Class frameMain
-# #########################################################################
-
-
-class frameMain(wx.Frame):
-
-    def __init__(self, parent):
-        wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"RunIfExists", pos=wx.DefaultPosition, size=wx.Size(738, 210), style=wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL)
-
-        self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
-
-        self.m_menubar1 = wx.MenuBar(0)
-        self.menuitemFile = wx.Menu()
-        self.menuitemFileClose = wx.MenuItem(self.menuitemFile, ID_CLOSE, u"Close", wx.EmptyString, wx.ITEM_NORMAL)
-        self.menuitemFile.Append(self.menuitemFileClose)
-
-        self.m_menubar1.Append(self.menuitemFile, u"File")
-
-        self.menuitemHelp = wx.Menu()
-        self.menuitemHelpSupport = wx.MenuItem(self.menuitemHelp, ID_GET_HELP, u"Support...", wx.EmptyString, wx.ITEM_NORMAL)
-        self.menuitemHelp.Append(self.menuitemHelpSupport)
-
-        self.menuitemHelpUpdate = wx.MenuItem(self.menuitemHelp, ID_CHECK_FOR_UPDATES, u"Check for updates", wx.EmptyString, wx.ITEM_NORMAL)
-        self.menuitemHelp.Append(self.menuitemHelpUpdate)
-
-        self.menuitemHelpAbout = wx.MenuItem(self.menuitemHelp, ID_ABOUT, u"About...", wx.EmptyString, wx.ITEM_NORMAL)
-        self.menuitemHelp.Append(self.menuitemHelpAbout)
-
-        self.m_menubar1.Append(self.menuitemHelp, u"Help")
-
-        self.SetMenuBar(self.m_menubar1)
-
-        bSizer2 = wx.BoxSizer(wx.VERTICAL)
-
-        self.m_panel1 = wx.Panel(self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL)
-        fgSizer1 = wx.FlexGridSizer(0, 2, 0, 0)
-        fgSizer1.AddGrowableCol(1)
-        fgSizer1.SetFlexibleDirection(wx.BOTH)
-        fgSizer1.SetNonFlexibleGrowMode(wx.FLEX_GROWMODE_SPECIFIED)
-
-
-        fgSizer1.Add((0, 0), 1, wx.EXPAND, 5)
-        self.m_staticText1 = wx.StaticText(self.m_panel1, wx.ID_ANY, u"Select the file to run,...", wx.DefaultPosition, wx.DefaultSize, 0)
-        self.m_staticText1.Wrap(-1)
-
-        self.m_staticText1.SetFont(wx.Font(wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString))
-
-        fgSizer1.Add(self.m_staticText1, 1, wx.ALL | wx.EXPAND, 5)
-        self.m_staticText2 = wx.StaticText(self.m_panel1, wx.ID_ANY, u"Run:", wx.DefaultPosition, wx.DefaultSize, 0)
-        self.m_staticText2.Wrap(-1)
-
-        fgSizer1.Add(self.m_staticText2, 0, wx.ALL, 5)
-        self.filepickerRun = wx.FilePickerCtrl(self.m_panel1, wx.ID_ANY, wx.EmptyString, u"Select a file", u"*.*", wx.DefaultPosition, wx.DefaultSize, wx.FLP_DEFAULT_STYLE)
-        fgSizer1.Add(self.filepickerRun, 1, wx.ALL | wx.EXPAND, 5)
-
-        fgSizer1.Add((0, 0), 1, wx.EXPAND, 5)
-        self.m_staticText3 = wx.StaticText(self.m_panel1, wx.ID_ANY, u"...if the following file exists.", wx.DefaultPosition, wx.DefaultSize, 0)
-        self.m_staticText3.Wrap(-1)
-
-        self.m_staticText3.SetFont(wx.Font(wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString))
-
-        fgSizer1.Add(self.m_staticText3, 1, wx.ALL | wx.EXPAND, 5)
-        self.m_staticText4 = wx.StaticText(self.m_panel1, wx.ID_ANY, u"Startfile:", wx.DefaultPosition, wx.DefaultSize, 0)
-        self.m_staticText4.Wrap(-1)
-
-        fgSizer1.Add(self.m_staticText4, 0, wx.ALL, 5)
-        self.filepickerStartfile = wx.FilePickerCtrl(self.m_panel1, wx.ID_ANY, wx.EmptyString, u"Select a file", u"*.*", wx.DefaultPosition, wx.DefaultSize, wx.FLP_DEFAULT_STYLE)
-        fgSizer1.Add(self.filepickerStartfile, 1, wx.ALL | wx.EXPAND, 5)
-
-        fgSizer1.Add((0, 0), 1, wx.EXPAND, 5)
-        fgSizer2 = wx.FlexGridSizer(0, 3, 0, 0)
-        fgSizer2.SetFlexibleDirection(wx.BOTH)
-        fgSizer2.SetNonFlexibleGrowMode(wx.FLEX_GROWMODE_SPECIFIED)
-
-        self.buttonCreateStartfile = wx.Button(self.m_panel1, wx.ID_ANY, u"Create Startfile", wx.DefaultPosition, wx.DefaultSize, 0)
-        fgSizer2.Add(self.buttonCreateStartfile, 0, wx.ALL, 5)
-        self.buttonActivate = wx.Button(self.m_panel1, wx.ID_ANY, u"Activate", wx.DefaultPosition, wx.DefaultSize, 0)
-        fgSizer2.Add(self.buttonActivate, 0, wx.ALL, 5)
-        self.buttonCreateLink = wx.Button(self.m_panel1, wx.ID_ANY, u"Create Link on Desktop", wx.DefaultPosition, wx.DefaultSize, 0)
-        fgSizer2.Add(self.buttonCreateLink, 0, wx.ALL, 5)
-        fgSizer1.Add(fgSizer2, 1, wx.EXPAND, 5)
-        self.m_panel1.SetSizer(fgSizer1)
-        self.m_panel1.Layout()
-        fgSizer1.Fit(self.m_panel1)
-        bSizer2.Add(self.m_panel1, 1, wx.EXPAND | wx.ALL, 5)
-        self.SetSizer(bSizer2)
-        self.Layout()
-        self.Centre(wx.BOTH)
-
-        # Connect Events
-        self.Bind(wx.EVT_SHOW, self.onShow)
-        self.Bind(wx.EVT_MENU, self.miFileClose, id=self.menuitemFileClose.GetId())
-        self.Bind(wx.EVT_MENU, self.miHelpSupport, id=self.menuitemHelpSupport.GetId())
-        self.Bind(wx.EVT_MENU, self.miHelpUpdate, id=self.menuitemHelpUpdate.GetId())
-        self.Bind(wx.EVT_MENU, self.miHelpAbout, id=self.menuitemHelpAbout.GetId())
-        self.buttonCreateStartfile.Bind(wx.EVT_BUTTON, self.createStartfile)
-        self.buttonActivate.Bind(wx.EVT_BUTTON, self.activate)
-        self.buttonCreateLink.Bind(wx.EVT_BUTTON, self.createDesktopLink)
-
-    def __del__(self):
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("RunIfExists")
+        self.setWindowIcon(icons.get_icon('directions_run_48dp_8B1A10_FILL0_wght400_GRAD0_opsz48'))
+        
+        self.init_ui()
+        self.run_file_path = ""
+        self.start_file_path = ""
+        
+    def init_ui(self):
+        self.create_menu_bar()
+        
+        central_widget = QWidget()
+        self.setCentralWidget(central_widget)
+        
+        main_layout = QVBoxLayout(central_widget)
+        content_widget = QWidget()
+        main_layout.addWidget(content_widget)
+        
+        grid_layout = QGridLayout(content_widget)
+        
+        header_label = QLabel("Select the file to run,...")
+        header_label.setStyleSheet("font-weight: bold;")
+        grid_layout.addWidget(QWidget(), 0, 0)
+        grid_layout.addWidget(header_label, 0, 1)
+        
+        run_label = QLabel("Run:")
+        run_layout = QHBoxLayout()
+        self.run_file_edit = QLineEdit()
+        self.run_file_edit.setPlaceholderText("Enter or paste file path...")
+        self.run_file_edit.textChanged.connect(self.on_run_file_changed)
+        self.run_file_browse_btn = QPushButton("Browse")
+        self.run_file_browse_btn.clicked.connect(self.select_run_file)
+        run_layout.addWidget(self.run_file_edit)
+        run_layout.addWidget(self.run_file_browse_btn)
+        run_widget = QWidget()
+        run_widget.setLayout(run_layout)
+        grid_layout.addWidget(run_label, 1, 0)
+        grid_layout.addWidget(run_widget, 1, 1)
+        
+        header_label2 = QLabel("...if the following file exists.")
+        header_label2.setStyleSheet("font-weight: bold;")
+        grid_layout.addWidget(QWidget(), 2, 0)
+        grid_layout.addWidget(header_label2, 2, 1)
+        
+        start_label = QLabel("Startfile:")
+        start_layout = QHBoxLayout()
+        self.start_file_edit = QLineEdit()
+        self.start_file_edit.setPlaceholderText("Enter or paste file path...")
+        self.start_file_edit.textChanged.connect(self.on_start_file_changed)
+        self.start_file_browse_btn = QPushButton("Browse")
+        self.start_file_browse_btn.clicked.connect(self.select_start_file)
+        start_layout.addWidget(self.start_file_edit)
+        start_layout.addWidget(self.start_file_browse_btn)
+        start_widget = QWidget()
+        start_widget.setLayout(start_layout)
+        grid_layout.addWidget(start_label, 3, 0)
+        grid_layout.addWidget(start_widget, 3, 1)
+        
+        button_layout = QHBoxLayout()
+        self.create_startfile_btn = QPushButton("Create Startfile")
+        self.activate_btn = QPushButton("Activate")
+        self.create_link_btn = QPushButton("Create Link on Desktop")
+        
+        self.create_startfile_btn.clicked.connect(self.create_startfile)
+        self.activate_btn.clicked.connect(self.activate)
+        self.create_link_btn.clicked.connect(self.create_desktop_link)
+        
+        button_layout.addWidget(self.create_startfile_btn)
+        button_layout.addWidget(self.activate_btn)
+        button_layout.addWidget(self.create_link_btn)
+        
+        button_widget = QWidget()
+        button_widget.setLayout(button_layout)
+        grid_layout.addWidget(QWidget(), 4, 0)
+        grid_layout.addWidget(button_widget, 4, 1)
+        
+        grid_layout.setColumnStretch(1, 1)
+        
+    def create_menu_bar(self):
+        menubar = self.menuBar()
+        
+        file_menu = menubar.addMenu("File")
+        close_action = QAction(icons.get_icon('logout_24dp_8B1A10_FILL0_wght400_GRAD0_opsz24'), "Close", self)
+        close_action.triggered.connect(self.close)
+        file_menu.addAction(close_action)
+        
+        help_menu = menubar.addMenu("Help")
+        
+        support_action = QAction(icons.get_icon('globe_24dp_8B1A10_FILL0_wght400_GRAD0_opsz24'), "Support...", self)
+        support_action.triggered.connect(self.show_support)
+        help_menu.addAction(support_action)
+        
+        update_action = QAction(icons.get_icon('update_24dp_8B1A10_FILL0_wght400_GRAD0_opsz24'), "Check for updates", self)
+        update_action.triggered.connect(self.check_updates)
+        help_menu.addAction(update_action)
+        
+        about_action = QAction(icons.get_icon('info_24dp_8B1A10_FILL0_wght400_GRAD0_opsz24'), "About...", self)
+        about_action.triggered.connect(self.show_about)
+        help_menu.addAction(about_action)
+        
+    def select_run_file(self):
+        file_path, _ = QFileDialog.getOpenFileName(self, "Select a file", "", "All Files (*.*)")
+        if file_path:
+            self.run_file_path = file_path
+            self.run_file_edit.setText(file_path)
+            
+    def select_start_file(self):
+        file_path, _ = QFileDialog.getOpenFileName(self, "Select a file", "", "All Files (*.*)")
+        if file_path:
+            self.start_file_path = file_path
+            self.start_file_edit.setText(file_path)
+    
+    def on_run_file_changed(self, text):
+        self.run_file_path = text.strip()
+    
+    def on_start_file_changed(self, text):
+        self.start_file_path = text.strip()
+    
+    def create_startfile(self):
+        if not self.start_file_path:
+            QMessageBox.warning(self, "Warning", "Please select a start file first.")
+            return
+            
+        if os.path.exists(self.start_file_path):
+            QMessageBox.information(self, "File exists", "File already exists.")
+        else:
+            with open(self.start_file_path, 'w') as f:
+                f.write('')
+            QMessageBox.information(self, "File created", "File created.")
+    
+    def activate(self):
         pass
-    # Virtual event handlers, override them in your derived class
-
-    def onShow(self, event):
-        event.Skip()
-
-    def miFileClose(self, event):
-        event.Skip()
-
-    def miHelpSupport(self, event):
-        event.Skip()
-
-    def miHelpUpdate(self, event):
-        event.Skip()
-
-    def miHelpAbout(self, event):
-        event.Skip()
-
-    def createStartfile(self, event):
-        event.Skip()
-
-    def activate(self, event):
-        event.Skip()
-
-    def createDesktopLink(self, event):
-        event.Skip()
-
-# #########################################################################
-# # Class dialogAbout
-# #########################################################################
-
-
-class dialogAbout(wx.Dialog):
-
-    def __init__(self, parent):
-        wx.Dialog.__init__(self, parent, id=wx.ID_ANY, title=u"About RunIfExists", pos=wx.DefaultPosition, size=wx.DefaultSize, style=wx.DEFAULT_DIALOG_STYLE)
-
-        self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
-
-        bSizer2 = wx.BoxSizer(wx.VERTICAL)
-
-        self.bitmapLogo = wx.StaticBitmap(self, wx.ID_ANY, wx.NullBitmap, wx.DefaultPosition, wx.DefaultSize, 0)
-        bSizer2.Add(self.bitmapLogo, 0, wx.ALL, 5)
-        self.staticTextName = wx.StaticText(self, wx.ID_ANY, u"MyLabel", wx.DefaultPosition, wx.DefaultSize, 0)
-        self.staticTextName.Wrap(-1)
-
-        bSizer2.Add(self.staticTextName, 0, wx.ALL, 5)
-        self.staticTextLicence = wx.StaticText(self, wx.ID_ANY, u"Licenced under", wx.DefaultPosition, wx.DefaultSize, 0)
-        self.staticTextLicence.Wrap(-1)
-
-        bSizer2.Add(self.staticTextLicence, 0, wx.ALL, 5)
-        self.staticTextGithub = wx.StaticText(self, wx.ID_ANY, u"More on GitHub", wx.DefaultPosition, wx.DefaultSize, 0)
-        self.staticTextGithub.Wrap(-1)
-
-        self.staticTextGithub.SetFont(wx.Font(wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, True, wx.EmptyString))
-        self.staticTextGithub.SetForegroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_HIGHLIGHT))
-
-        bSizer2.Add(self.staticTextGithub, 0, wx.ALL, 5)
-        self.staticTextIcon8 = wx.StaticText(self, wx.ID_ANY, u"Icons by Icons8.com", wx.DefaultPosition, wx.DefaultSize, 0)
-        self.staticTextIcon8.Wrap(-1)
-
-        self.staticTextIcon8.SetForegroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_GRAYTEXT))
-
-        bSizer2.Add(self.staticTextIcon8, 0, wx.ALL, 5)
-        m_sdbSizer2 = wx.StdDialogButtonSizer()
-        self.m_sdbSizer2OK = wx.Button(self, wx.ID_OK)
-        m_sdbSizer2.AddButton(self.m_sdbSizer2OK)
-        self.m_sdbSizer2Cancel = wx.Button(self, wx.ID_CANCEL)
-        m_sdbSizer2.AddButton(self.m_sdbSizer2Cancel)
-        m_sdbSizer2.Realize()
-        bSizer2.Add(m_sdbSizer2, 1, wx.EXPAND, 5)
-        self.SetSizer(bSizer2)
-        self.Layout()
-        bSizer2.Fit(self)
-        self.Centre(wx.BOTH)
-
-        # Connect Events
-        self.staticTextGithub.Bind(wx.EVT_LEFT_DOWN, self.openGithub)
-        self.staticTextIcon8.Bind(wx.EVT_LEFT_DOWN, self.openIcons8)
-
-    def __del__(self):
+    
+    def create_desktop_link(self):
         pass
-    # Virtual event handlers, override them in your derived class
+    
+    def show_support(self):
+        pass
+    
+    def check_updates(self):
+        pass
+    
+    def show_about(self):
+        pass
 
-    def openGithub(self, event):
-        event.Skip()
 
-    def openIcons8(self, event):
-        event.Skip()
+class AboutDialog(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("About RunIfExists")
+        self.setWindowIcon(icons.get_icon('info_24dp_8B1A10_FILL0_wght400_GRAD0_opsz24'))
+        self.setModal(True)
+        
+        layout = QVBoxLayout(self)
+        
+        self.logo_label = QLabel()
+        layout.addWidget(self.logo_label)
+        
+        self.name_label = QLabel("RunIfExists")
+        layout.addWidget(self.name_label)
+        
+        self.license_label = QLabel("Licensed under GPL-3.0")
+        layout.addWidget(self.license_label)
+        
+        self.github_label = QLabel('<a href="https://github.com/dseichter/RunIfExists">More on GitHub</a>')
+        self.github_label.setOpenExternalLinks(True)
+        layout.addWidget(self.github_label)
+        
+        buttons = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
+        buttons.accepted.connect(self.accept)
+        buttons.rejected.connect(self.reject)
+        layout.addWidget(buttons)
