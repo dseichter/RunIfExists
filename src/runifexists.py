@@ -19,32 +19,48 @@ class WatcherThread(threading.Thread):
         self._parent = parent
         self._startfile = startfile
         self._runfile = runfile
+        self._stop_event = threading.Event()
         self.daemon = True
 
     def run(self):
-        while not os.path.exists(self._startfile):
+        while not self._stop_event.is_set() and not os.path.exists(self._startfile):
             time.sleep(1)
         
-        env = os.environ.copy()
-        subprocess.Popen(self._runfile, env=env)
-        
-        try:
-            os.remove(self._startfile)
-        except OSError:
-            pass
+        if not self._stop_event.is_set() and os.path.exists(self._startfile):
+            env = os.environ.copy()
+            subprocess.Popen(self._runfile, env=env)
+            
+            try:
+                os.remove(self._startfile)
+            except OSError:
+                pass
+    
+    def stop(self):
+        self._stop_event.set()
 
 class RunIfExistsApp(MainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle(f"{helper.NAME} {helper.VERSION}")
+        self.worker = None
+        
+    def closeEvent(self, event):
+        if self.worker and self.worker.is_alive():
+            self.worker.stop()
+            self.worker.join(timeout=1)
+        event.accept()
         
     def activate(self):
         if not self.start_file_path or not self.run_file_path:
             QMessageBox.warning(self, "Warning", "Please select both run file and start file.")
             return
             
-        worker = WatcherThread(self, self.start_file_path, self.run_file_path)
-        worker.start()
+        if self.worker and self.worker.is_alive():
+            self.worker.stop()
+            self.worker.join(timeout=1)
+            
+        self.worker = WatcherThread(self, self.start_file_path, self.run_file_path)
+        self.worker.start()
         QMessageBox.information(self, "Watcher started", "Watcher started.")
 
     def create_desktop_link(self):
