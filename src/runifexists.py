@@ -101,6 +101,9 @@ class RunIfExistsApp(MainWindow):
         dlg.exec()
 
 def main():
+    # Suppress GTK warnings
+    os.environ['GTK_MODULES'] = ''
+    
     app = QApplication(sys.argv)
     app.setApplicationName("RunIfExists")
     
