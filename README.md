@@ -18,10 +18,12 @@ Run a file or script if a specified file exists. Build complex workflows with Ru
   <b><a href="https://github.com/dseichter/RunIfExists/issues">Issues</a></b>
 </p>
 
-![ruff](https://github.com/dseichter/RunIfExists/actions/workflows/ruff.yml/badge.svg)
-![bandit](https://github.com/dseichter/RunIfExists/actions/workflows/bandit.yml/badge.svg)
-![trivy](https://github.com/dseichter/RunIfExists/actions/workflows/trivy.yml/badge.svg)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dseichter_RunIfExists&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=dseichter_RunIfExists)
+<p align="center">
+<img src="https://github.com/dseichter/RunIfExists/actions/workflows/ruff.yml/badge.svg" alt="ruff">
+<img src="https://github.com/dseichter/RunIfExists/actions/workflows/bandit.yml/badge.svg" alt="bandit">
+<img src="https://github.com/dseichter/RunIfExists/actions/workflows/trivy.yml/badge.svg" alt="trivy">
+<a href="https://sonarcloud.io/summary/new_code?id=dseichter_RunIfExists"><img src="https://sonarcloud.io/api/project_badges/measure?project=dseichter_RunIfExists&metric=alert_status" alt="Quality Gate Status"></a>
+</p>
 
 ---
 
@@ -86,5 +88,5 @@ GPL 3.0 — see [LICENSE](LICENSE) file at the root of the repository for detail
 
 ## Icons
  
-GitHubIssueClient uses [Google Material Symbols](https://fonts.google.com/icons) within its code for UI icons.  
+RunIfExists uses [Google Material Symbols](https://fonts.google.com/icons) within its code for UI icons.  
 Material Symbols are licensed under the [Apache License 2.0](https://github.com/google/material-design-icons/blob/master/LICENSE) and are free for use in open source projects.
