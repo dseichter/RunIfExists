@@ -2,12 +2,28 @@
 
 Run a file or script if a specified file exists. Build complex workflows with Run If Exists.
 
-[![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/dseichter/RunIfExists/total)](https://github.com/dseichter/RunIfExists/releases)
+<p align="center">
+  <img src="icons/directions_run_48dp_8B1A10_FILL0_wght400_GRAD0_opsz48.png" alt="RunIfExists Logo"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/github/v/release/dseichter/RunIfExists?style=flat-square" alt="Release">
+  <img src="https://img.shields.io/github/downloads/dseichter/RunIfExists/total?style=flat-square" alt="Downloads">
+  <img src="https://img.shields.io/github/license/dseichter/RunIfExists?style=flat-square" alt="License">
+</p>
+
+<p align="center">
+  <b><a href="https://dseichter.github.io/RunIfExists/">Documentation</a></b> •
+  <b><a href="https://github.com/dseichter/RunIfExists/releases">Downloads</a></b> •
+  <b><a href="https://github.com/dseichter/RunIfExists/issues">Issues</a></b>
+</p>
+
 ![ruff](https://github.com/dseichter/RunIfExists/actions/workflows/ruff.yml/badge.svg)
+![bandit](https://github.com/dseichter/RunIfExists/actions/workflows/bandit.yml/badge.svg)
 ![trivy](https://github.com/dseichter/RunIfExists/actions/workflows/trivy.yml/badge.svg)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dseichter_RunIfExists&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=dseichter_RunIfExists)
 
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=dseichter_RunIfExists)
+---
 
 ## About
 
