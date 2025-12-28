@@ -13,7 +13,6 @@ Run a file or script if a specified file exists. Build complex workflows with Ru
 </p>
 
 <p align="center">
-  <b><a href="https://dseichter.github.io/RunIfExists/">Documentation</a></b> •
   <b><a href="https://github.com/dseichter/RunIfExists/releases">Downloads</a></b> •
   <b><a href="https://github.com/dseichter/RunIfExists/issues">Issues</a></b>
 </p>
