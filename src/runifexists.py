@@ -93,7 +93,7 @@ class RunIfExistsApp(MainWindow):
                     f.write(f'{sys.executable} "{self.run_file_path}" "{self.start_file_path}"\n')
                     
             if os.name != 'nt':
-                os.chmod(file_path, 0o755)
+                os.chmod(file_path, 0o700)
             
             QMessageBox.information(self, "Desktop link", f"Script created: {file_path}")
         except (OSError, PermissionError) as e:
