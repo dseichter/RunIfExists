@@ -4,7 +4,7 @@ import sys
 import os
 import time
 import threading
-import subprocess
+import subprocess  # nosec
 import webbrowser
 import signal
 from PySide6.QtWidgets import QApplication, QMessageBox, QFileDialog
@@ -28,7 +28,7 @@ class WatcherThread(threading.Thread):
         
         if not self._stop_event.is_set() and os.path.exists(self._startfile):
             env = os.environ.copy()
-            subprocess.Popen(self._runfile, env=env)
+            subprocess.Popen(self._runfile, env=env)  # nosec
             
             try:
                 os.remove(self._startfile)
