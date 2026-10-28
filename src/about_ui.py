@@ -14,11 +14,12 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 # import the newly created GUI file
+import webbrowser
+
 import gui
 
 # import workdir specific libraries
 import helper
-import webbrowser
 import icons
 
 

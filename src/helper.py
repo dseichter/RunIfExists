@@ -13,10 +13,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import urllib3
 import json
 import logging
+
+import urllib3
 from packaging import version
+
+logger = logging.getLogger(__name__)
 
 VERSION = "v2025-12-21"
 UPDATEURL = 'https://api.github.com/repos/dseichter/RunIfExists/releases/latest'
@@ -34,8 +37,15 @@ def check_for_new_release():
         for release in releases:
             if not release.get('prerelease', False):
                 latest_version = release.get('tag_name')
+                if not isinstance(latest_version, str):
+                    continue
                 return version.parse(latest_version) > version.parse(VERSION)
         return False  # No stable release found
-    except Exception as e:
-        logging.error(f"Error checking for new release: {e}")
+    except (
+        urllib3.exceptions.HTTPError,
+        UnicodeDecodeError,
+        json.JSONDecodeError,
+        version.InvalidVersion,
+    ) as e:
+        logger.error(f"Error checking for new release: {e}")
         return False

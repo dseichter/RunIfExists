@@ -1,9 +1,23 @@
-from PySide6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
-                               QGridLayout, QLabel, QPushButton, QFileDialog, 
-                               QMessageBox, QDialog, QDialogButtonBox, QLineEdit)
-from PySide6.QtGui import QAction
 import os
+
+from PySide6.QtGui import QAction
+from PySide6.QtWidgets import (
+    QDialog,
+    QDialogButtonBox,
+    QFileDialog,
+    QGridLayout,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QMainWindow,
+    QMessageBox,
+    QPushButton,
+    QVBoxLayout,
+    QWidget,
+)
+
 import icons
+
 
 class MainWindow(QMainWindow):
     def __init__(self):

@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
 
-import sys
 import os
-import time
-import threading
-import subprocess  # nosec
-import webbrowser
 import signal
-from PySide6.QtWidgets import QApplication, QMessageBox, QFileDialog
+import subprocess  # nosec
+import sys
+import threading
+import time
+import webbrowser
 
-from gui import MainWindow
-from about_ui import DialogAbout
+from PySide6.QtWidgets import QApplication, QFileDialog, QMessageBox
+
 import helper
+from about_ui import DialogAbout
+from gui import MainWindow
+
 
 class WatcherThread(threading.Thread):
     def __init__(self, parent, startfile, runfile):
@@ -97,7 +99,7 @@ class RunIfExistsApp(MainWindow):
             
             QMessageBox.information(self, "Desktop link", f"Script created: {file_path}")
         except (OSError, PermissionError) as e:
-            QMessageBox.critical(self, "Error", f"Failed to create script: {str(e)}")
+            QMessageBox.critical(self, "Error", f"Failed to create script: {e!s}")
 
     def show_support(self):
         webbrowser.open_new_tab('https://github.com/dseichter/RunIfExists')
